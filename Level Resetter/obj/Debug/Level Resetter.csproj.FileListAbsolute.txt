@@ -1,0 +1,9 @@
+E:\Project VSRG\Level Resetter\Level Resetter\Level Resetter\bin\Debug\Level Resetter.exe.config
+E:\Project VSRG\Level Resetter\Level Resetter\Level Resetter\obj\Debug\Level Resetter.csprojResolveAssemblyReference.cache
+E:\Project VSRG\Level Resetter\Level Resetter\Level Resetter\obj\Debug\Level_Resetter.Form1.resources
+E:\Project VSRG\Level Resetter\Level Resetter\Level Resetter\obj\Debug\Level_Resetter.Properties.Resources.resources
+E:\Project VSRG\Level Resetter\Level Resetter\Level Resetter\obj\Debug\Level Resetter.csproj.GenerateResource.Cache
+E:\Project VSRG\Level Resetter\Level Resetter\Level Resetter\bin\Debug\Level Resetter.exe
+E:\Project VSRG\Level Resetter\Level Resetter\Level Resetter\bin\Debug\Level Resetter.pdb
+E:\Project VSRG\Level Resetter\Level Resetter\Level Resetter\obj\Debug\Level Resetter.exe
+E:\Project VSRG\Level Resetter\Level Resetter\Level Resetter\obj\Debug\Level Resetter.pdb
