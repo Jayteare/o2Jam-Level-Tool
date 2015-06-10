@@ -17,7 +17,6 @@ namespace Level_Resetter
 
         internal System.Windows.Forms.Button btnSearch;
         internal System.Windows.Forms.Label lblDirectory;
-        internal System.Windows.Forms.ComboBox cboDirectory;
 
         /// <summary>
         /// Required designer variable
@@ -35,9 +34,6 @@ namespace Level_Resetter
             dataGridView1.Rows.Clear();
             dataGridView1.Refresh();
 
-            //FUNCTIONAL CHANGE - Clears the display textbox.
-            cboDirectory.Enabled = false;
-
             //FUNCTIONAL CHANGE - Change the button to searching form.
             btnSearch.Text = "Searching...";
             this.Cursor = Cursors.WaitCursor;
@@ -46,12 +42,11 @@ namespace Level_Resetter
             //FUNCTION - Searches the given directory with level parameters from 
             //           the form with the .ojn file extension and displays information
             //           regarding the .ojn file.
-            DirSearch(cboDirectory.Text);
+            DirSearch(DirectoryBox.Text);
 
             //FUNCTIONAL CHANGE - RE-Change the button back to it's orginal form.
             btnSearch.Text = "Search";
             this.Cursor = Cursors.Default;
-            cboDirectory.Enabled = true;
         }
 
         private void btnSearchAll_Click_1(object sender, EventArgs e)
@@ -60,9 +55,6 @@ namespace Level_Resetter
             dataGridView1.Rows.Clear();
             dataGridView1.Refresh();
 
-            //FUNCTIONAL CHANGE - Clears the display textbox.
-            cboDirectory.Enabled = false;
-
             //FUNCTIONAL CHANGE - Change the button to searching form.
             btnSearchAll.Text = "Searching...";
             this.Cursor = Cursors.WaitCursor;
@@ -70,12 +62,11 @@ namespace Level_Resetter
 
             //FUNCTION - Searches the given directory from the form with the .ojn file extension
             //           and displays information regarding the .ojn file.
-            DirSearchAll(cboDirectory.Text);
+            DirSearchAll(DirectoryBox.Text);
 
             //FUNCTIONAL CHANGE - RE-Change the button back to it's orginal form.
             btnSearchAll.Text = "Search All";
             this.Cursor = Cursors.Default;
-            cboDirectory.Enabled = true;
         }
 
         /// <summary>
@@ -88,12 +79,7 @@ namespace Level_Resetter
         /// </summary>
         private void Form1_Load(object sender, System.EventArgs e)
         {
-            cboDirectory.Items.Clear();
-            foreach (string s in Directory.GetLogicalDrives())
-            {
-                cboDirectory.Items.Add(s);
-            }
-            cboDirectory.Text = "C:\\";
+
         }
 
         /// <summary>
@@ -109,7 +95,7 @@ namespace Level_Resetter
         {
 
             string assemblypath    = Environment.CurrentDirectory;
-            string[] o2jamojnfiles = Directory.GetFiles("F:\\Games\\O2China English\\O2Emu\\Music\\", "*.ojn", SearchOption.AllDirectories);
+            string[] o2jamojnfiles = Directory.GetFiles(sDir, "*.ojn", SearchOption.AllDirectories);
             int counter = 0;
 
             try
@@ -119,7 +105,7 @@ namespace Level_Resetter
                     counter += 1;
                     #region filenames/locations
                     //string filedir = Path.GetDirectoryName(o2File);
-                    string filedir = "F:\\Games\\O2China English\\O2Emu\\Music\\";
+                    string filedir = sDir;
                     string ojmname = Path.GetFileNameWithoutExtension(o2File) + ".ojm";
                     string ojnname = Path.GetFileNameWithoutExtension(o2File);
                     string ojmfile = filedir + ojmname;
@@ -158,6 +144,7 @@ namespace Level_Resetter
                     string HXLevel = lvlhard.ToString();
                     int excompareMain = Int32.Parse(EXLevel);
                     int excompareBox1 = Int32.Parse(textBox2.Text);
+                    // add the 3 textboxes together and than search for em.
                     if(textBox2.Text != null)
                     {
                         if(excompareMain <= excompareBox1)
@@ -172,7 +159,7 @@ namespace Level_Resetter
 
                     }
                         //NEED TO FIX BEYOND
-                    else if(textBox3.Text != null)
+                    if(textBox2.Text == null)
                     {
                         //MessageBox - Displays the Target path does not exist.
                         MessageBox.Show("The target path does not exist.");
@@ -224,8 +211,7 @@ namespace Level_Resetter
         /// 
         /// <SEARCH ALL FUNCTION>
         /// 
-        /// The searching algorithm function for specific searches desired by the user, to search for the .ojn files.
-        /// You must include a parameter of a search number in either textbox1,textbox2 or textbox3 to be able to use this function.
+        /// The searching algorithm function for non-specific searches desired by the user, to search for the all .ojn files.
         /// 
         /// </summary>
         void DirSearchAll(string sDir)
@@ -237,7 +223,7 @@ namespace Level_Resetter
             //MessageBox.Show("Dot Net Perls is awesome.");
 
             string assemblypath = Environment.CurrentDirectory;
-            string[] o2jamojnfiles = Directory.GetFiles("F:\\Games\\O2China English\\O2Emu\\Music\\", "*.ojn", SearchOption.AllDirectories);
+            string[] o2jamojnfiles = Directory.GetFiles(sDir, "*.ojn", SearchOption.AllDirectories);
             int counter = 0;
 
             try
@@ -247,24 +233,39 @@ namespace Level_Resetter
                     counter += 1;
                     #region filenames/locations
                     //string filedir = Path.GetDirectoryName(o2File);
-                    string filedir = "F:\\Games\\O2China English\\O2Emu\\Music\\";
+                    string filedir = sDir;
                     string ojmname = Path.GetFileNameWithoutExtension(o2File) + ".ojm";
                     string ojnname = Path.GetFileNameWithoutExtension(o2File);
                     string ojmfile = filedir + ojmname;
                     string[] files = Directory.GetFiles(filedir);
 
+
+
                     #region .ojn file header
                     //read file header of .ojn
                     FileStream fs = File.Open(o2File, FileMode.Open, FileAccess.Read);
                     BinaryReader header = new BinaryReader(fs);
+                    //BinaryWriter bw     = new BinaryWriter(fs);
+
                     header.BaseStream.Position = 0;
                     byte[] headerojn = header.ReadBytes(0x12C);
+                    headerojn[20] = 99;
+
+
+                    //TO-DO SEARCH ALGORITHM AND SAVE ALGORITHM.
+
+
+
+                    //textBox2.Text = 
+
                     //bpm
                     float o2jamBPM = System.BitConverter.ToSingle(headerojn.Skip(16).Take(4).ToArray(), 0);
                     //difficulties
                     int lvleasy = BitConverter.ToUInt16(headerojn.Skip(20).Take(2).ToArray(), 0);
                     int lvlnormal = BitConverter.ToUInt16(headerojn.Skip(22).Take(2).ToArray(), 0);
                     int lvlhard = BitConverter.ToUInt16(headerojn.Skip(24).Take(2).ToArray(), 0);
+
+
                     //notes per difficulty
                     int noteseasy = BitConverter.ToInt32(headerojn.Skip(40).Take(4).ToArray(), 0);
                     int notesnormal = BitConverter.ToInt32(headerojn.Skip(44).Take(4).ToArray(), 0);
@@ -333,8 +334,8 @@ namespace Level_Resetter
         private void btnCopy_Click(object sender, EventArgs e)
         {
             string fileName = "o2ma1001.ojn";
-            string sourcePath = @"F:\\Games\\O2China English\\O2Emu\\Music\\";
-            string targetPath = @"F:\\Games\\O2China English\\Test Folder";
+            string sourcePath = DirectoryBox.Text;
+            string targetPath = MoveLocationBox.Text;
 
             // Use Path class to manipulate file and directory paths.
             string sourceFile = System.IO.Path.Combine(sourcePath, fileName);
@@ -352,9 +353,9 @@ namespace Level_Resetter
 
             }
 
-            // To copy a file to another location and 
-            // overwrite the destination file if it already exists.
-            System.IO.File.Copy(sourceFile, destFile, true);
+           // To copy a file to another location and 
+           // overwrite the destination file if it already exists.
+           //System.IO.File.Copy(sourceFile, destFile, true);
 
 
             // To copy all the files in one directory to another directory.
