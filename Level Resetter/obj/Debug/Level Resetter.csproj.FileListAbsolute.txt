@@ -7,3 +7,12 @@ E:\Project VSRG\Level Resetter\Level Resetter\Level Resetter\bin\Debug\Level Res
 E:\Project VSRG\Level Resetter\Level Resetter\Level Resetter\bin\Debug\Level Resetter.pdb
 E:\Project VSRG\Level Resetter\Level Resetter\Level Resetter\obj\Debug\Level Resetter.exe
 E:\Project VSRG\Level Resetter\Level Resetter\Level Resetter\obj\Debug\Level Resetter.pdb
+C:\Users\Can\Documents\GitHub\o2Jam-Level-Tool\Level Resetter\bin\Debug\Level Resetter.exe.config
+C:\Users\Can\Documents\GitHub\o2Jam-Level-Tool\Level Resetter\obj\Debug\Level Resetter.exe
+C:\Users\Can\Documents\GitHub\o2Jam-Level-Tool\Level Resetter\obj\Debug\Level Resetter.pdb
+C:\Users\Can\Documents\GitHub\o2Jam-Level-Tool\Level Resetter\bin\Debug\Level Resetter.exe
+C:\Users\Can\Documents\GitHub\o2Jam-Level-Tool\Level Resetter\bin\Debug\Level Resetter.pdb
+C:\Users\Can\Documents\GitHub\o2Jam-Level-Tool\Level Resetter\obj\Debug\Level Resetter.csprojResolveAssemblyReference.cache
+C:\Users\Can\Documents\GitHub\o2Jam-Level-Tool\Level Resetter\obj\Debug\Level_Resetter.Form1.resources
+C:\Users\Can\Documents\GitHub\o2Jam-Level-Tool\Level Resetter\obj\Debug\Level_Resetter.Properties.Resources.resources
+C:\Users\Can\Documents\GitHub\o2Jam-Level-Tool\Level Resetter\obj\Debug\Level Resetter.csproj.GenerateResource.Cache
